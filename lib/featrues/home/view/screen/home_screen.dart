@@ -7,6 +7,7 @@ import 'package:nftmarketplace/featrues/home/view/widgets/floating_botton.dart';
 import 'package:nftmarketplace/featrues/home/view/widgets/horizontal_image_card_list.dart';
 import 'package:nftmarketplace/featrues/home/view/widgets/top_saller_card.dart';
 import 'package:nftmarketplace/featrues/home/view/widgets/trinding_image_card_list.dart';
+import 'package:nftmarketplace/featrues/states/ui/screen/statess_creen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -45,7 +46,14 @@ class HomeScreen extends StatelessWidget {
                         color: Colors.white,
                         size: 30.sp,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => StatesScreen(),
+                          ),
+                        );
+                      },
                     ),
                     SizedBox(width: 35.w),
                     IconButton(
