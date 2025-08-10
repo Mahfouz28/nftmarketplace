@@ -10,53 +10,51 @@ class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Expanded(
-        child: Stack(
-          children: [
-            //  Gradient overlay
-            Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Color(0xFFB6BDD0), Color(0xFF5C609B)],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
+      body: Stack(
+        children: [
+          // Gradient overlay
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Color(0xFFB6BDD0), Color(0xFF5C609B)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
               ),
             ),
+          ),
 
-            //  Background image (start halfway outside screen)
-            Image.asset(
-              AppImages.onboardingImage,
-              width: double.infinity,
+          // Background image covering full screen
+          Image.asset(
+            AppImages.onboardingImage,
+            width: double.infinity,
+            height: double.infinity,
+            fit: BoxFit.cover,
+          ),
 
-              fit: BoxFit.cover,
-            ),
-
-            //  Foreground content
-            SafeArea(
-              child: Padding(
-                padding: EdgeInsets.all(40.0.r),
-                child: Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        OnBoardingStrings.onboardingTitle,
-                        style: TextStyle(
-                          fontSize: 36.sp,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.white,
-                        ),
+          // Foreground content
+          SafeArea(
+            child: Padding(
+              padding: EdgeInsets.all(40.0.r),
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      OnBoardingStrings.onboardingTitle,
+                      style: TextStyle(
+                        fontSize: 36.sp,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white,
                       ),
                     ),
-                    Spacer(),
-                    Flexible(child: GlassCard()),
-                  ],
-                ),
+                  ),
+                  const Spacer(),
+                  Flexible(child: GlassCard()),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

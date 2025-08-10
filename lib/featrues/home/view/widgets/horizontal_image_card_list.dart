@@ -1,8 +1,8 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HorizontalImageCardList extends StatelessWidget {
-  // List containing image paths and their corresponding titles
   final List<Map<String, String>> items = [
     {"image": "assets/Art.jpg", "title": "Art"},
     {"image": "assets/arthur_party.jpg", "title": "Party"},
@@ -10,14 +10,15 @@ class HorizontalImageCardList extends StatelessWidget {
   ];
 
   HorizontalImageCardList({super.key});
+
+  @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return SizedBox(
       height: 170.h,
       child: ListView.separated(
         separatorBuilder: (context, index) => SizedBox(width: 8.w),
-        scrollDirection: Axis.horizontal, // Display items horizontally
-        itemCount: items.length, // Total number of items
+        scrollDirection: Axis.horizontal,
+        itemCount: items.length,
         itemBuilder: (context, index) {
           return Stack(
             children: [
@@ -32,9 +33,37 @@ class HorizontalImageCardList extends StatelessWidget {
                 ),
               ),
 
-              // Title text placed at the bottom center of the image
+              // Blur only at bottom
               Positioned(
-                bottom: 10.h, // Distance from the bottom
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.vertical(
+                    bottom: Radius.circular(16.r),
+                  ),
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                    child: Container(
+                      height: 40.h,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.transparent,
+                            Colors.black.withOpacity(0.4),
+                          ],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
+              // Title text
+              Positioned(
+                bottom: 10.h,
                 left: 0,
                 right: 0,
                 child: Text(
@@ -44,7 +73,6 @@ class HorizontalImageCardList extends StatelessWidget {
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w600,
                     shadows: [
-                      // Shadow to make the text stand out against the image
                       Shadow(
                         blurRadius: 4,
                         color: Colors.black.withOpacity(0.5),
@@ -52,7 +80,7 @@ class HorizontalImageCardList extends StatelessWidget {
                       ),
                     ],
                   ),
-                  textAlign: TextAlign.center, // Center text horizontally
+                  textAlign: TextAlign.center,
                 ),
               ),
             ],

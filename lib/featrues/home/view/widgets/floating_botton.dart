@@ -1,5 +1,5 @@
 import 'dart:math' as Math;
-import 'dart:ui'; // للـ blur
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,20 +16,11 @@ class PolygonFab extends StatelessWidget {
       child: ClipPath(
         clipper: PolygonClipper(sides: 6),
         child: BackdropFilter(
-          filter: ImageFilter.blur(
-            sigmaX: 150, 
-            sigmaY: 150,
-          ),
+          filter: ImageFilter.blur(sigmaX: 500, sigmaY: 500),
           child: Container(
-            width: 80.w, 
+            width: 80.w,
             height: 80.h,
-            decoration: BoxDecoration(
-              color: Color(0xffFFFFFF80).withOpacity(0.15),
-              border: Border.all(
-                color: Colors.white.withOpacity(0.25),
-                width: 1.5,
-              ),
-            ),
+            decoration: BoxDecoration(color: Colors.white.withOpacity(0.08)),
             child: Icon(Icons.add, color: Colors.white, size: 26.sp),
           ),
         ),
