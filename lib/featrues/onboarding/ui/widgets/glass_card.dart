@@ -1,8 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nftmarketplace/featrues/home/view/screen/home_screen.dart';
 
-import '../../../../constance/screens/screens.dart';
 
 class GlassCard extends StatelessWidget {
   const GlassCard({super.key});
@@ -76,9 +76,28 @@ class GlassCard extends StatelessWidget {
                         ),
                         child: MaterialButton(
                           onPressed: () {
-                            Navigator.pushReplacementNamed(
+                            Navigator.pushReplacement(
                               context,
-                              AppScreens.home,
+                              PageRouteBuilder(
+                                transitionDuration: const Duration(
+                                  milliseconds: 1000,
+                                ),
+                                pageBuilder:
+                                    (context, animation, secondaryAnimation) =>
+                                        HomeScreen(),
+                                transitionsBuilder:
+                                    (
+                                      context,
+                                      animation,
+                                      secondaryAnimation,
+                                      child,
+                                    ) {
+                                      return FadeTransition(
+                                        opacity: animation,
+                                        child: child,
+                                      );
+                                    },
+                              ),
                             );
                           },
                           shape: RoundedRectangleBorder(

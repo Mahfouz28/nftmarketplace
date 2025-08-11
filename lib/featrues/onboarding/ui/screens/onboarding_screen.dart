@@ -9,20 +9,13 @@ class OnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    precacheImage(AssetImage(AppImages.onboardingImage), context);
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      extendBody: true,
+
       body: Stack(
         children: [
-          // Gradient overlay
-          Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Color(0xFFB6BDD0), Color(0xFF5C609B)],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-            ),
-          ),
-
           // Background image covering full screen
           Image.asset(
             AppImages.onboardingImage,

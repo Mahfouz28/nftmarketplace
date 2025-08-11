@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 200, sigmaY: 200),
           child: Container(
-            height: 90.h,
+            height: 70.h,
             color: Colors.transparent,
             child: Stack(
               alignment: Alignment.center,
@@ -49,8 +49,21 @@ class HomeScreen extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => StatesScreen(),
+                          PageRouteBuilder(
+                            transitionDuration: Duration(milliseconds: 300),
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) =>
+                                    StatesScreen(),
+                            transitionsBuilder:
+                                (
+                                  context,
+                                  animation,
+                                  secondaryAnimation,
+                                  child,
+                                ) => FadeTransition(
+                                  opacity: animation,
+                                  child: child,
+                                ),
                           ),
                         );
                       },
@@ -108,6 +121,7 @@ class HomeScreen extends StatelessWidget {
       ),
 
       body: SafeArea(
+        bottom: false,
         child: Padding(
           padding: EdgeInsets.all(16.0.r),
           child: SingleChildScrollView(
@@ -166,6 +180,7 @@ class HomeScreen extends StatelessWidget {
 
                 // A list of category items Top Saller  on the HomeScreen.
                 TopSallerCard(),
+                70.verticalSpace,
               ],
             ),
           ),
